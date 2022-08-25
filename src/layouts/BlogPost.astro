@@ -21,37 +21,28 @@ const {
 <html>
 	<head>
 		<BaseHead title={title} description={description} />
-		<style>
-			.title {
-				font-size: 2em;
-				margin: 0.25em 0 0;
-			}
-			hr {
-  				border-top: 1px solid #DDD;
-				margin: 1rem 0;
-			}
-		</style>
 	</head>
 
-	<body>
-		<Header />
-		<main>
-			<article>
-				{heroImage && (
-					<img
-						width={720}
-						height={360}
-						src={heroImage}
-						alt=""
-					/>
-				)}
-				<h1 class="title">{title}</h1>
-				{pubDate && <time>{pubDate}</time>}
-				{updatedDate && <div>Last updated on <time>{updatedDate}</time></div>}
-				<hr/>
-				<slot />
-			</article>
-		</main>
-		<Footer />
+	<body class="">
+		<div
+			class="w-full min-h-screen flex flex-col dark:bg-primaryDarkBgColor dark:text-white"
+		>
+			<Header />
+			<main
+				class="max-w-screen-md container mx-auto flex-auto py-6 dark:bg-primaryDarkBgColor"
+			>
+				<article class="flex flex-col gap-y-4 md:px-0 px-4">
+					<section class="">
+						<h2 class="text-2xl font-bold">{title || ""}</h2>
+						<time>2022/12/12</time>
+					</section>
+					<hr />
+					<div class="max-w-none prose dark:prose-invert">
+						<slot />
+					</div>
+				</article>
+			</main>
+			<Footer />
+		</div>
 	</body>
 </html>

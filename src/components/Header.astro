@@ -1,25 +1,28 @@
 ---
-import HeaderLink from './HeaderLink.astro';
-import { SITE_TITLE } from '../config';
+import { Icon } from "astro-icon";
+import HeaderLink from "./HeaderLink.astro";
+import { SITE_TITLE, AVATAR_LINK, GITHUB_LINK } from "../config";
+import ThemeSwitcher from "./ThemeSwitcher";
 ---
 
-<header>
-	<h2>
-		{SITE_TITLE}
-	</h2>
-	<nav>
+<header class="p-4">
+	<nav class="max-w-screen-md mx-auto flex items-center">
+		<a href="/" class="flex gap-2 items-center">
+			<img class="w-10 h-10 rounded-full" src={AVATAR_LINK} />
+			<span class="text-lg font-bold">FizzyElt</span>
+		</a>
+		<div class="flex-auto"></div>
+		<a href={GITHUB_LINK} target="_blank"
+			><Icon class="w-8 h-8" pack="ion" name="logo-github" />
+		</a>
+		<ThemeSwitcher client:load />
+	</nav>
+
+	<!-- <nav>
 		<HeaderLink href="/">Home</HeaderLink>
 		<HeaderLink href="/blog">Blog</HeaderLink>
 		<HeaderLink href="/about">About</HeaderLink>
 		<HeaderLink href="https://twitter.com/astrodotbuild" target="_blank">Twitter</HeaderLink>
 		<HeaderLink href="https://github.com/withastro/astro" target="_blank">GitHub</HeaderLink>
-	</nav>
+	</nav> -->
 </header>
-<style>
-	header {
-		margin: 0em 0 2em;
-	}
-	h2 {
-		margin: 0.5em 0;
-	}
-</style>

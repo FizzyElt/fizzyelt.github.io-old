@@ -1,13 +1,21 @@
 ---
-const today = new Date();
+import { Icon } from "astro-icon";
 ---
 
-<footer>
-	&copy; {today.getFullYear()} YOUR NAME HERE. All rights reserved.
+<footer class="p-4">
+	<div class="max-w-screen-md container mx-auto flex items-center">
+		<a href="" class="flex gap-x-2 items-center">
+			<Icon pack="ion" name="mail" class="w-6" />
+			<span>fizzyelt8786@gmail.com</span>
+		</a>
+		<div class="flex-auto"></div>
+		<div class="flex gap-x-4">
+			<a href="">
+				<Icon pack="ion" name="logo-github" class="w-6" />
+			</a>
+			<a href="">
+				<Icon pack="ion" name="logo-twitter" class="w-6" />
+			</a>
+		</div>
+	</div>
 </footer>
-<style>
-	footer {
-		padding: 25px;
-		text-align: center;
-	}
-</style>
