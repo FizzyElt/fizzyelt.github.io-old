@@ -6,7 +6,6 @@ import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
-  base: 'astro-blogs',
   site: 'https://fizzyelt.github.io',
   integrations: [mdx(), sitemap(), react(), tailwind()],
   markdown: {

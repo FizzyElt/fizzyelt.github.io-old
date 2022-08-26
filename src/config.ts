@@ -3,8 +3,8 @@
 
 export const NICK_NAME = 'FizzyElt';
 export const SITE_TITLE = 'FizzyElt blogs';
-export const SITE_DESCRIPTION = 'Welcome to my website!';
-export const AVATAR_LINK = 'https://avatars.githubusercontent.com/u/43887006?v=4';
+export const SITE_DESCRIPTION = 'FizzyElt website';
+export const AVATAR_LINK = '/fizzyelt.png';
 
 export const TWITTER_LINK = 'https://twitter.com/FizzyElt';
 export const GITHUB_LINK = 'https://github.com/FizzyElt';

@@ -1,6 +1,6 @@
 ---
 import { Icon } from "astro-icon";
-import { SITE_TITLE, AVATAR_LINK, GITHUB_LINK } from "../config";
+import { AVATAR_LINK, GITHUB_LINK } from "../config";
 import ThemeSwitcher from "./ThemeSwitcher";
 ---
 
@@ -12,8 +12,8 @@ import ThemeSwitcher from "./ThemeSwitcher";
 		</a>
 		<div class="flex-auto"></div>
 		<div class="flex gap-x-4">
-			<a href={GITHUB_LINK} target="_blank"
-				><Icon class="w-6 h-6" pack="ion" name="logo-github" />
+			<a href={GITHUB_LINK} target="_blank">
+				<Icon class="w-6 h-6" pack="ion" name="logo-github" />
 			</a>
 			<ThemeSwitcher client:load />
 		</div>
