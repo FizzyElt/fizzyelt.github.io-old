@@ -7,7 +7,7 @@ import tailwind from '@astrojs/tailwind';
 // https://astro.build/config
 export default defineConfig({
   base: 'astro-blogs',
-  site: 'https://FizzyElt.github.io',
+  site: 'https://fizzyelt.github.io',
   integrations: [mdx(), sitemap(), react(), tailwind()],
   markdown: {
     shikiConfig: {
