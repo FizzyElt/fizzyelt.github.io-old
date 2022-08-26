@@ -1,5 +1,12 @@
 const colors = require('tailwindcss/colors');
 /** @type {import('tailwindcss').Config} */
+
+delete colors['lightBlue'];
+delete colors['warmGray'];
+delete colors['trueGray'];
+delete colors['coolGray'];
+delete colors['blueGray'];
+
 module.exports = {
   darkMode: 'class',
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
@@ -8,7 +15,7 @@ module.exports = {
     colors: {
       ...colors,
       primaryBgColor: colors.white,
-      primaryDarkBgColor: colors.slate[900],
+      primaryDarkBgColor: colors.gray[800],
     },
     extend: {
       typography: (theme) => ({
@@ -26,7 +33,7 @@ module.exports = {
             '--tw-prose-quote-borders': 'var(--tw-prose-invert-quote-borders)',
             '--tw-prose-captions': 'var(--tw-prose-invert-captions)',
             '--tw-prose-code': 'var(--tw-prose-invert-code)',
-            '--tw-prose-code-bg': theme('colors.gray.700'),
+            '--tw-prose-code-bg': 'var(--tw-prose-invert-code-bg)',
             '--tw-prose-pre-code': 'var(--tw-prose-invert-pre-code)',
             '--tw-prose-pre-bg': 'var(--tw-prose-invert-pre-bg)',
             '--tw-prose-th-borders': 'var(--tw-prose-invert-th-borders)',
@@ -35,8 +42,12 @@ module.exports = {
         },
         DEFAULT: {
           css: {
-            '--tw-prose-code-bg': theme('colors.gray.200'),
+            '--tw-prose-code': theme('colors.emerald.700'),
+            '--tw-prose-invert-code': theme('colors.emerald.300'),
+            '--tw-prose-code-bg': theme('colors.emerald.100'),
+            '--tw-prose-invert-code-bg': theme('colors.emerald.800'),
             code: {
+              color: 'var(--tw-prose-code)',
               padding: '2px 4px',
               borderRadius: '4px',
               backgroundColor: 'var(--tw-prose-code-bg)',

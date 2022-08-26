@@ -4,28 +4,36 @@ import Footer from "../components/Footer.astro";
 import Profile from "../components/Profile.astro";
 import PostCard from "../components/PostCard.astro";
 import ThemeSwitcher from "../components/ThemeSwitcher";
+import { parse, compareAsc, compareDesc } from "date-fns";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
 
-const posts = await Astro.glob("./blog/*.{md,mdx}");
+const posts = (await Astro.glob("./blog/*.{md,mdx}")).sort((a, b) =>
+	compareDesc(
+		parse(a.frontmatter.pubDate, "yyyy/MM/dd", new Date()),
+		parse(b.frontmatter.pubDate, "yyyy/MM/dd", new Date())
+	)
+);
 ---
 
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="zh-Hant">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
 		<main
-			class="w-full min-h-screen flex flex-col dark:bg-primaryDarkBgColor dark:text-white"
+			class="w-full min-h-screen flex flex-col px-4 dark:bg-primaryDarkBgColor dark:text-white"
 		>
-			<div class="flex max-w-screen-md container mx-auto justify-end">
+			<div
+				class="flex max-w-screen-md container py-4 mx-auto justify-end"
+			>
 				<div class="flex-auto"></div>
-				<ThemeSwitcher client:load />
+				<ThemeSwitcher client:visible />
 			</div>
 			<Profile />
 			<main class="flex-auto py-6">
 				<content
-					class="container max-w-screen-sm px-4 mx-auto flex flex-col gap-6"
+					class="container max-w-screen-sm px-4 mx-auto flex flex-col gap-10"
 				>
 					{posts.map((post) => <PostCard post={post} />)}
 				</content>

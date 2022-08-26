@@ -7,5 +7,10 @@ import tailwind from '@astrojs/tailwind';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://example.com',
-  integrations: [react(), mdx(), sitemap(), tailwind()],
+  integrations: [mdx(), sitemap(), react(), tailwind()],
+  markdown: {
+    shikiConfig: {
+      theme: 'one-dark-pro',
+    },
+  },
 });

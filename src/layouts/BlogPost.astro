@@ -2,25 +2,30 @@
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import Tag from "../components/Tag.astro";
 
 export interface Props {
 	content: {
 		title: string;
 		description: string;
 		pubDate?: string;
+		tags?: string;
 		updatedDate?: string;
 		heroImage?: string;
 	};
 }
 
 const {
-	content: { title, description, pubDate, updatedDate, heroImage },
+	content: { title, description, pubDate, updatedDate, heroImage, tags = "" },
 } = Astro.props as Props;
+
+const tagList = tags.split(",").map((tag) => tag.trim());
 ---
 
-<html>
+<!DOCTYPE html>
+<html lang="zh-Hant">
 	<head>
-		<BaseHead title={title} description={description} />
+		<BaseHead title={title} description={description} image={heroImage} />
 	</head>
 
 	<body class="">
@@ -32,9 +37,12 @@ const {
 				class="max-w-screen-md container mx-auto flex-auto py-6 dark:bg-primaryDarkBgColor"
 			>
 				<article class="flex flex-col gap-y-4 md:px-0 px-4">
-					<section class="">
+					<section class="flex flex-col gap-y-2">
 						<h2 class="text-2xl font-bold">{title || ""}</h2>
-						<time>2022/12/12</time>
+						<div class="flex gap-x-2">
+							{tagList.map((tag) => <Tag tag={tag} />)}
+						</div>
+						<time datetime={pubDate}>{pubDate}</time>
 					</section>
 					<hr />
 					<div class="max-w-none prose dark:prose-invert">

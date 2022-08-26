@@ -1,26 +1,31 @@
 import { useState, useEffect } from 'react';
+import { IoMoon, IoSunny } from 'react-icons/io5';
 
 const ThemeSwitcher = () => {
-  const [mode, setMode] = useState(localStorage.getItem('theme') || 'light');
+  const [mode, setMode] = useState(localStorage.getItem('theme'));
 
   useEffect(() => {
-    const bodyEle = document.body;
-
     if (mode === 'dark') {
-      localStorage.setItem('theme', 'dark');
-      bodyEle.classList.add('dark');
-    } else {
-      localStorage.setItem('theme', 'light');
-      bodyEle.classList.remove('dark');
+      document.body.classList.add('dark');
     }
-  }, [mode]);
+  }, []);
 
-  const handleSwitchMode = () => (mode === 'light' ? setMode('dark') : setMode('light'));
+  const handleSwitchMode = () => {
+    if (mode === 'dark') {
+      setMode('light');
+      localStorage.setItem('theme', 'light');
+      document.body.classList.remove('dark');
+      return;
+    }
 
+    setMode('dark');
+    localStorage.setItem('theme', 'dark');
+    document.body.classList.add('dark');
+  };
   return (
-    <div>
-      <button onClick={handleSwitchMode}>click</button>
-    </div>
+    <button onClick={handleSwitchMode}>
+      {mode === 'dark' ? <IoSunny className="text-xl" /> : <IoMoon className="text-xl" />}
+    </button>
   );
 };
 
