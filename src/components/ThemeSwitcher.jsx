@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { IoMoon, IoSunny } from 'react-icons/io5';
+import { IoMoon, IoSunny } from 'react-icons/io5/index.js';
 
 const ThemeSwitcher = () => {
   const [mode, setMode] = useState(localStorage.getItem('theme'));
