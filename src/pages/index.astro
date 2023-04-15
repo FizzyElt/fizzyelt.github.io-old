@@ -3,7 +3,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Profile from '../components/Profile.astro';
 import PostCard from '../components/PostCard.astro';
-import ThemeSwitcher from '../components/ThemeSwitcher';
+import ThemeSwitcher from '../components/ThemeSwitcher.astro';
 import { parse, compareDesc } from 'date-fns';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
 
@@ -24,7 +24,7 @@ const posts = (await Astro.glob('./blog/*.{md,mdx}')).sort((a, b) =>
     <main class="w-full min-h-screen flex flex-col dark:bg-primaryDarkBgColor dark:text-white">
       <div class="flex max-w-screen-md container py-4 px-4 md:px-0 mx-auto justify-end">
         <div class="flex-auto"></div>
-        <ThemeSwitcher client:visible />
+        <ThemeSwitcher client:only="react" />
       </div>
       <Profile />
       <main class="flex-auto py-6 px-4 md:px-0">

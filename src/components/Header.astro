@@ -1,7 +1,7 @@
 ---
 import { Icon } from 'astro-icon';
 import { AVATAR_LINK, GITHUB_LINK } from '../config';
-import ThemeSwitcher from './ThemeSwitcher';
+import ThemeSwitcher from './ThemeSwitcher.astro';
 ---
 
 <header class="p-4">
@@ -15,7 +15,7 @@ import ThemeSwitcher from './ThemeSwitcher';
       <a href={GITHUB_LINK} target="_blank">
         <Icon class="w-6 h-6" pack="ion" name="logo-github" />
       </a>
-      <ThemeSwitcher client:load />
+      <ThemeSwitcher />
     </div>
   </nav>
 </header>
