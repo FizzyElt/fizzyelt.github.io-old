@@ -41,7 +41,7 @@ const tagList = tags.split(',').map((tag) => tag.trim());
         <article class="flex flex-col gap-y-4 md:px-0 px-4">
           <section class="flex flex-col gap-y-2">
             <h2 class="text-2xl font-bold">{title || ''}</h2>
-            <div class="flex gap-x-2">
+            <div class="flex flex-wrap gap-x-2 gap-y-2">
               {tagList.map((tag) => <Tag tag={tag} />)}
             </div>
             <time datetime={pubDate}>{pubDate}</time>
