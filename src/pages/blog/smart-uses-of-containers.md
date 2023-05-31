@@ -531,7 +531,7 @@ function flatMap<E, T, E2, U>(
 ```ts
 const divide = (a: number, b: number): Either<string, number> => {
   if (b === 0) {
-    left('Cannot divide by zero');
+    return left('Cannot divide by zero');
   }
   return of(a / b);
 };
