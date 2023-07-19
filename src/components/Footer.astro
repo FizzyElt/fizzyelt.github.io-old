@@ -3,8 +3,10 @@ import { Icon } from 'astro-icon';
 import { TWITTER_LINK, GITHUB_LINK, EMAIL } from '../config';
 ---
 
-<footer class="p-4">
-  <div class="max-w-screen-md container mx-auto flex items-center">
+<footer class="py-8 px-4">
+  <div
+    class="max-w-screen-md container mx-auto flex items-center gap-y-2 sm:flex-row flex-col-reverse"
+  >
     <a href={`mailto:${EMAIL}`} class="flex gap-x-2 items-center">
       <Icon pack="ion" name="mail" class="w-6" />
       <span>{EMAIL}</span>

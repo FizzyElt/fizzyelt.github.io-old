@@ -58,6 +58,9 @@ module.exports = {
             'code::after': {
               content: '""',
             },
+            a: {
+              'overflow-wrap': 'break-word',
+            },
           },
         },
       }),
