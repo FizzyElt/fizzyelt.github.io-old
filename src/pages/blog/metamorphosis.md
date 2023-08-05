@@ -2,7 +2,7 @@
 layout: "../../layouts/BlogPost.astro"
 title: "蛻變"
 pubDate: "2023/08/06"
-description: "近一年的心態變化及轉變"
+description: "近一年的心態變化以及接觸的事物"
 tags: "心靈"
 heroImage: "https://images.unsplash.com/photo-1513897962041-55f6de928dad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1280&q=80"
 ---
