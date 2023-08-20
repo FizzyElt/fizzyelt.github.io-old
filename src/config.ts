@@ -8,4 +8,5 @@ export const AVATAR_LINK = '/fizzyelt.png';
 
 export const TWITTER_LINK = 'https://twitter.com/FizzyElt';
 export const GITHUB_LINK = 'https://github.com/FizzyElt';
+export const MASTODON_LINK = 'https://g0v.social/@fizzyelt';
 export const EMAIL = 'fizzyelt8786@gmail.com';

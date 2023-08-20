@@ -1,6 +1,6 @@
 ---
 import { Icon } from 'astro-icon';
-import { TWITTER_LINK, GITHUB_LINK, EMAIL } from '../config';
+import { TWITTER_LINK, GITHUB_LINK, MASTODON_LINK, EMAIL } from '../config';
 ---
 
 <footer class="py-8 px-4">
@@ -18,6 +18,9 @@ import { TWITTER_LINK, GITHUB_LINK, EMAIL } from '../config';
       </a>
       <a href={TWITTER_LINK} title="FizzyElt Twitter">
         <Icon pack="ion" name="logo-twitter" class="w-6" />
+      </a>
+      <a href={MASTODON_LINK} title="FizzyElt Mastodon">
+        <Icon pack="ion" name="logo-mastodon" class="w-6" />
       </a>
     </div>
   </div>
