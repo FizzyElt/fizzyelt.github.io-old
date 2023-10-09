@@ -51,6 +51,7 @@ module.exports = {
               padding: '2px 4px',
               borderRadius: '4px',
               backgroundColor: 'var(--tw-prose-code-bg)',
+              whiteSpace: 'no-wrap',
             },
             'code::before': {
               content: '""',
