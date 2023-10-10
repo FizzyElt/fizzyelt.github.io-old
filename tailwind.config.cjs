@@ -42,10 +42,10 @@ module.exports = {
         },
         DEFAULT: {
           css: {
-            '--tw-prose-code': theme('colors.emerald.700'),
-            '--tw-prose-invert-code': theme('colors.emerald.300'),
-            '--tw-prose-code-bg': theme('colors.emerald.100'),
-            '--tw-prose-invert-code-bg': theme('colors.emerald.800'),
+            '--tw-prose-code': theme('colors.neutral.700'),
+            '--tw-prose-code-bg': theme('colors.neutral.300'),
+            '--tw-prose-invert-code': theme('colors.neutral.200'),
+            '--tw-prose-invert-code-bg': theme('colors.neutral.600'),
             code: {
               color: 'var(--tw-prose-code)',
               padding: '2px 4px',
@@ -61,6 +61,12 @@ module.exports = {
             },
             a: {
               'overflow-wrap': 'break-word',
+            },
+            '.astro-code code': {
+              whiteSpace: 'inherit',
+            },
+            p: {
+              fontSize: '1.125rem',
             },
           },
         },
