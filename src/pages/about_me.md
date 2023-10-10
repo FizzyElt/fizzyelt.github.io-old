@@ -10,7 +10,6 @@ description: "我的使命"
 
 目前正在將 Functional Programming 的知識點進行蒐集整理，期望能透過不同角度看待 FP 的方式來協助 FP 學習者理解其真正含意。
 
-
 ## 接觸過的技能與語言
 
 - Javascript/Typescript

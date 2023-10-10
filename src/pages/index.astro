@@ -4,18 +4,16 @@ import Footer from '../components/Footer.astro';
 import Profile from '../components/Profile.astro';
 import PostCard from '../components/PostCard.astro';
 import ThemeSwitcher from '../components/ThemeSwitcher.astro';
-import { parse, compareDesc } from 'date-fns';
+import { compareDesc } from 'date-fns';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
+import { getCollection } from 'astro:content';
 
-const posts = (await Astro.glob('./blog/*.{md,mdx}')).sort((a, b) =>
-  compareDesc(
-    parse(a.frontmatter.pubDate, 'yyyy/MM/dd', new Date()),
-    parse(b.frontmatter.pubDate, 'yyyy/MM/dd', new Date())
-  )
+const posts = await getCollection('posts').then((posts) =>
+  posts.sort((a, b) => compareDesc(a.data.pubDate, b.data.pubDate))
 );
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
