@@ -3,26 +3,25 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Tag from '../components/Tag.astro';
+import format from 'date-fns/format';
 
 export interface Props {
-  content: {
+  frontmatter: {
     title: string;
     description: string;
-    pubDate?: string;
-    tags?: string;
-    updatedDate?: string;
+    pubDate?: Date;
+    updatedDate?: Date;
+    tags: string[];
     heroImage?: string;
   };
 }
 
 const {
-  content: { title, description, pubDate, updatedDate, heroImage, tags = '' },
+  frontmatter: { title, description, pubDate, heroImage, tags = [] },
 } = Astro.props as Props;
-
-const tagList = tags.split(',').map((tag) => tag.trim());
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant">
   <head>
     <BaseHead title={title} description={description} image={heroImage} />
@@ -42,9 +41,9 @@ const tagList = tags.split(',').map((tag) => tag.trim());
           <section class="flex flex-col gap-y-2">
             <h2 class="text-2xl font-bold">{title || ''}</h2>
             <div class="flex flex-wrap gap-x-2 gap-y-2">
-              {tagList.map((tag) => <Tag tag={tag} />)}
+              {tags.map((tag) => <Tag tag={tag} />)}
             </div>
-            <time datetime={pubDate}>{pubDate}</time>
+            <time datetime={format(pubDate, 'yyyy/MM/dd')}>{format(pubDate, 'yyyy/MM/dd')}</time>
           </section>
           <hr />
           <div class="max-w-none prose dark:prose-invert">

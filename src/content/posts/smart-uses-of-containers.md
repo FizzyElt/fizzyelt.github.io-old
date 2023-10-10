@@ -1,12 +1,12 @@
 ---
-layout: "../../layouts/BlogPost.astro"
 title: "容器的妙用"
-pubDate: "2023/05/29"
+pubDate: 2023-05-29
 description: "透過容器來解釋 Functor、Monad，以及它能發揮什麼作用"
-tags: "Typescript, Functional Programming, fp-ts"
+tags: ["Typescript", "Functional Programming", "fp-ts"]
 heroImage: "https://images.unsplash.com/photo-1607437817193-3b3b029b5b75?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2670&q=80"
 ---
-![](https://images.unsplash.com/photo-1607437817193-3b3b029b5b75?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2670&q=80)
+![hero image](https://images.unsplash.com/photo-1607437817193-3b3b029b5b75?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2670&q=80)
+
 學習 Functional Programming 時，你是否總是對 **Functor**、**Monad** 這兩個詞產生困惑，你不是第一個也不會是最後一個，這確實是大部分人學習 FP 的一道檻，但是如果從數學角度切入對我們一般人而言實在是太痛苦了，所以本篇從最簡單的容器帶你走過整個演變過程，並且去識別開發中最讓人頭痛的部份，以及一個特殊容器如何解決這些問題。
 
 ## 容器
@@ -16,8 +16,6 @@ heroImage: "https://images.unsplash.com/photo-1607437817193-3b3b029b5b75?ixlib=r
 ```ts
 type Container<T> = { value: T }
 ```
-
-
 
 ### of
 
@@ -31,8 +29,6 @@ function of<T>(value: T): Container<T> {
 }
 ```
 
-
-
 ### map
 
 一切看起來很美好，但我們會遇到一個問題，如果我有一個 function 只**接受一個純值也回傳一個純值**，我遇到 `Container<T>` 我該怎麼辦 ?
@@ -44,8 +40,6 @@ const increase = (x: number) => x + 1
 
 increase(containerX) // 被包裹住無法計算 
 ```
-
-
 
 我必須得把值從容器內拿出來做計算，並且因為他原本就在容器內所以我們還要把他放回去
 
@@ -61,8 +55,6 @@ const result = increase(value); // 執行函式
 const containerY = of(result); // 裝回去
 ```
 
-
-
 或者修改你的 function
 
 ```ts
@@ -76,8 +68,6 @@ const increase = (containerX: Container<number>): Container<number> => {
 const result = increase(containerX)
 ```
 
-
-
 好了我們解決了因為在容器內無法計算的問題，但你會發現你一直在做這重複又無聊的動作，甚至他把你原本純淨無暇的 code 搞的髒髒的，這當然不能忍！程式必須維持優雅！
 
 我們剛剛說這是一個 **拿出來 → 計算 → 放回去** 的重複的動作，那我們就可以把他做成一個通用的 function 叫做 `map`
@@ -88,8 +78,6 @@ function map<T, U>(container: Container<T>, fn: (a: T) => U): Container<U> {
 }
 ```
 
-
-
 現在你可以把他寫成這樣
 
 ```ts
@@ -99,8 +87,6 @@ const increase = (x: number) => x + 1;
 
 const result = map(containerX, increase);
 ```
-
-
 
 好，到目前為止我們有了三樣東西，`Container`, `of`, `map` ，這三樣東西的組成我們可以將他粗略的視為 **Functor**。
 
@@ -134,8 +120,6 @@ const result = map(containerX, increase);
   map(map(fa, double), square) // Container<4>
   ```
 
-
-
 相關連結
 
 * [Functor - HaskellWiki](https://wiki.haskell.org/Functor)
@@ -152,8 +136,6 @@ const result = map(containerX, increase);
 const double = (x: number): Container<number> => of(x * 2) 
 ```
 
-
-
 我們嘗試用 map 執行看看，你會發現你會得到一個多疊一層容器的結果 `Container<Container<number>>`
 
 ```ts
@@ -162,8 +144,6 @@ const containerX = of(1)
 // Container<Container<number>>
 const result = map(containerX, double)
 ```
-
-
 
 如果你又想做第二次 `double`，你不僅要多套一層 `map` 上去，而且結果變成三層的容器！如果想做更多次就會越套愈多，最後就是無止盡的套層。
 
@@ -177,8 +157,6 @@ const result = map(containerX, double)
 const result2 = map(result1, (c) => map(c, double));
 ```
 
-
-
 現在我們的程式又被這套層弄的亂糟糟的，那我們要優雅的繼續 `map` 下去我們該怎麼做？
 
 那就是在 map 結束後把他解開永遠維持一層，所以我們製作一個叫 `flatten` 的 function 幫我們做這件事
@@ -188,8 +166,6 @@ function flatten<T>(container: Container<Container<T>>): Container<T> {
   return container.value;
 }
 ```
-
-
 
 現在你可以
 
@@ -209,8 +185,6 @@ const result3 = map(result2, double);
 const result4 = flatten(result3)
 ```
 
-
-
 似乎乾淨許多，但好像還不夠，每次都要自己解開實在是太繁瑣了，不如我們把 `flatten` 跟 `map` 組合在一起叫做 `flatMap`
 
 ```ts
@@ -219,11 +193,7 @@ function flatMap<T, U>(container: Container<T>, fn: (a: T) => Container<U>): Con
 }
 ```
 
-
-
 現在你只要遇到 function 是**傳入一個值返回一個容器**，你就可以使用 `flatMap` 操作。
-
-
 
 我們除了 `Container`, `of`, `map`，現在又多了一個函式叫 `flatMap`
 
@@ -231,13 +201,9 @@ function flatMap<T, U>(container: Container<T>, fn: (a: T) => Container<U>): Con
 
 等等，為什麼是三個？ map 去哪了？為什麼又是粗略呢？
 
-
-
 #### map 去哪了？
 
 因為 `flatMap` 由 `map` 構成，其實可以不用特別寫出來，因為由於有 `map` 關係，所以今天一個 Monad 會同時擁有 Functor 特性
-
-
 
 #### 為什麼又是粗略呢？
 
@@ -279,8 +245,6 @@ function flatMap<T, U>(container: Container<T>, fn: (a: T) => Container<U>): Con
   flatMap(fa, (a) => flatMap(double(a), square))
   ```
 
-
-
 相關連結
 
 * <https://wiki.haskell.org/Monad_laws>
@@ -305,8 +269,6 @@ function flatMap<T, U>(container: Container<T>, fn: (a: T) => Container<U>): Con
 
 回想一下我們在 function 中處理空值都怎麼處理，要嘛判斷完再丟進來，要嘛直接改寫function 讓它判斷空值：
 
-
-
 判斷完再丟進去
 
 ```ts
@@ -324,8 +286,6 @@ if(value !== undefined){
 
 ```
 
-
-
 直接改寫 function
 
 ```ts
@@ -339,8 +299,6 @@ const result = double(value)
 
 // ...
 ```
-
-
 
 你發現不管哪一種都避免不了這不是很優雅的判斷式，某種程度上也造成了閱讀上的困難（你可能也是？），那有沒有什麼招能讓這東西變得好看一點 ?
 
@@ -392,8 +350,6 @@ function flatMap<T, U>(option: Option<T>, fn: (v: T) => Option<U>): Option<U> {
 }
 ```
 
-
-
  你可比較優雅的做完你要的操作
 
 ```ts
@@ -405,8 +361,6 @@ const result = map(value, double);
 
 // ...
 ```
-
-
 
 甚至串接多個操作也不必理會容器裡有沒有值
 
@@ -427,8 +381,6 @@ const result3 = flatMap(result2, evenNumber);
 
 // ...
 ```
-
-
 
 ## 錯誤處理
 
@@ -455,8 +407,6 @@ function fn(){
 
 ```
 
-
-
 那這方法有什麼問題嘛？
 
 沒問題，他是對的，但他有兩個缺點
@@ -468,8 +418,6 @@ function fn(){
 ### Either
 
 Either 用於表示**可能對也可能錯**的一種容器，對就是 Right 錯就是 Left，但他的運作方式跟Option / Maybe 相似，只是多了個用於表示錯誤的型別，但在型別處理上要複雜許多。
-
-
 
 以下是簡易 Either 實作
 
@@ -518,11 +466,7 @@ function flatMap<E, T, E2, U>(
 }
 ```
 
-
-
 那 Either 如何解決了上述問題？
-
-
 
 * 明確表明了這是一個有可能會出錯的結果，迫使開發者去處裡。
 
@@ -560,8 +504,6 @@ function fn(){
 
 * 透過 `map` 跟 `flatMap`，可以降低因各種繁複的判斷式而影響程式主流程的複雜度。
 
-
-
 ### 更多不同種類的容器
 
 除了 Option / Maybe、Either，還有許多不同用途的容器
@@ -582,12 +524,8 @@ function fn(){
 * **State**\
   管理共用資源
 
-
-
 ## 結論
 
 透過容器的抽象化，我們將特定的共通問題與程式的主要流程進行隔離。這種方式不僅讓你能夠最大程度地維持原始的商業邏輯，避免被不相關的問題對程式邏輯造成干擾。我們只需在最適合的時機來處理這些問題即可。
 
 Functional Programming 的核心精神在問題的**分解**和**組合**上。開發者需要學習如何有效地拆解問題，同時，FP 提供了讓問題組合更為靈巧的方法。這兩者是開發過程中不可或缺的元素。
-
-

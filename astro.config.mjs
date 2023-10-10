@@ -5,15 +5,15 @@ import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 
 import remarkMath from 'remark-math';
-import rehypeKaTex from 'rehype-katex';
+import rehypeKatex from 'rehype-katex';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://fizzyelt.github.io',
-  integrations: [mdx(), sitemap(), react(), tailwind()],
+  integrations: [sitemap(), tailwind()],
   markdown: {
     remarkPlugins: [remarkMath],
-    rehypePlugins: [rehypeKaTex],
+    rehypePlugins: [rehypeKatex],
     shikiConfig: {
       theme: 'one-dark-pro',
     },

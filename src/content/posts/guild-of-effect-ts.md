@@ -1,9 +1,8 @@
 ---
-layout: "../../layouts/BlogPost.astro"
 title: "Effect-ts 概覽"
-pubDate: "2023/10/10"
+pubDate: 2023-10-10
 description: "Effect-ts 生態與使用心得"
-tags: "Typescript,Functional Programming"
+tags: ["Typescript", "Functional Programming"]
 ---
 
 約莫年初時我已經接觸 fp-ts 一段時間，那時我發現作者專注在 v3 版本，而 v3 比較特別的是部份東西被拆散出來成各個 project，剛好作者在 discord 徵求協助寫文件跟範例，於是我就為 **fp-ts/data** 函數貢獻了一點範例跟測試案例。

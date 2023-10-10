@@ -1,9 +1,8 @@
 ---
-layout: "../../layouts/BlogPost.astro"
 title: "用集合思考型別"
-pubDate: "2023/04/16"
+pubDate: 2023-04-16
 description: "透過集合的概念來思考程式的型別"
-tags: "Functional Programming, algebra, set"
+tags: ["Functional Programming", "algebra", "set"]
 ---
 
 作為一個 FP 愛好者，當你學習到某種程度時你多多少少會碰點數學，即便沒有直接接觸數學本身也會了解一下 FP 語言，**Haskell** 肯定聽過吧？
@@ -16,7 +15,7 @@ tags: "Functional Programming, algebra, set"
 
 對於試圖做過努力得你肯定也看過 [fantasy-land](https://github.com/fantasyland/fantasy-land) 的這張圖：
 
-![](https://i.imgur.com/fbrWU8p.png)
+![algebra](https://i.imgur.com/fbrWU8p.png)
 
 我也相信你應該沒耐心把內容全部看完（就是我），並且焦點全在左側的 `Functor` 樹狀圖（還是我），以為這才是你最需要學習的，不過在因緣際會之下讀了 **fp-ts** 作者的 FP 介紹[文章](https://github.com/enricopolanski/functional-programming)才發現我似乎在越級打怪。
 

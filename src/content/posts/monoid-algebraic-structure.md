@@ -1,14 +1,14 @@
 ---
-layout: "../../layouts/BlogPost.astro"
 title: "Monoid Algebraic structure"
-pubDate: "2023/01/29"
+pubDate: 2023-01-29
 description: "介紹 Monoid 數學定義與程式的關係"
-tags: "Typescript, Functional Programming, fp-ts, algebra"
+tags: ["Typescript", "Functional Programming", "fp-ts", "algebra"]
 ---
 
 **Monoid**，是在一個 **Semigroup** 中存在一個 [identity element](https://en.wikipedia.org/wiki/Identity_element)。
 
 ### identity element
+
 假設我們有個集合 $S$，而一個 **identity element** 必須滿足以下條件：
 
 $$\exists e\in S, \forall a\in S\ \  a \bullet e = a\ \rm{and} \ e\bullet a=a$$
@@ -22,8 +22,10 @@ $$0 + 47 = 47\ and\ 47 + 0 =47$$
 $$1 * 34 = 34\ and\ 34 * 1 =47$$
 
 ### Monoid
+
 到目前為止我們已經整理了三樣規則
--  Magma：嘗試定義一個集合 $M$ 的**二元運算**，$(M,\bullet)$ 
+
+- Magma：嘗試定義一個集合 $M$ 的**二元運算**，$(M,\bullet)$
 
 $$a,b\in M \Longrightarrow a \bullet b \in M$$
 
@@ -36,6 +38,7 @@ $$x,y,z\in S\Longrightarrow(x\bullet y)\bullet z = x\bullet (y\bullet z)$$
 $$\exists e\in M, \forall a\in M\ \  a \bullet e = a\ \rm{and} \ e\bullet a=a$$
 
 [fp-ts interface](https://github.com/gcanti/fp-ts/blob/master/src/Monoid.ts#L50) 定義如下
+
 ```typescript
 interface Monoid<A> extends Semigroup<A> {
   readonly empty: A
@@ -43,6 +46,7 @@ interface Monoid<A> extends Semigroup<A> {
 ```
 
 ### 實例
+
 我們依然可以定義一個數字加法
 
 ```typescript
@@ -94,8 +98,8 @@ export const getEndomorphismMonoid = <A>(): Monoid<Endomorphism<A>> => ({
 });
 ```
 
-
 ### 參考連結
+
 - https://github.com/enricopolanski/functional-programming#modeling-composition-through-monoids
 - https://en.wikipedia.org/wiki/Monoid
 - https://en.wikipedia.org/wiki/Identity_element
