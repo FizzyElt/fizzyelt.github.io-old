@@ -180,119 +180,119 @@ declare module 'astro:content' {
   slug: "2021-breakthrough";
   body: string;
   collection: "posts";
-  data: any
+  data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
 "2022-I-learned-things.md": {
 	id: "2022-I-learned-things.md";
   slug: "2022-i-learned-things";
   body: string;
   collection: "posts";
-  data: any
+  data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
 "chakra-ui-experience.md": {
 	id: "chakra-ui-experience.md";
   slug: "chakra-ui-experience";
   body: string;
   collection: "posts";
-  data: any
+  data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
 "functor-and-JSTS.md": {
 	id: "functor-and-JSTS.md";
   slug: "functor-and-jsts";
   body: string;
   collection: "posts";
-  data: any
+  data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
 "guild-of-effect-ts.md": {
 	id: "guild-of-effect-ts.md";
   slug: "guild-of-effect-ts";
   body: string;
   collection: "posts";
-  data: any
+  data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
 "information-anxiety.md": {
 	id: "information-anxiety.md";
   slug: "information-anxiety";
   body: string;
   collection: "posts";
-  data: any
+  data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
 "invisible-influence.md": {
 	id: "invisible-influence.md";
   slug: "invisible-influence";
   body: string;
   collection: "posts";
-  data: any
+  data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
 "learn-how-to-learn.md": {
 	id: "learn-how-to-learn.md";
   slug: "learn-how-to-learn";
   body: string;
   collection: "posts";
-  data: any
+  data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
 "magma-algebraic-structure.md": {
 	id: "magma-algebraic-structure.md";
   slug: "magma-algebraic-structure";
   body: string;
   collection: "posts";
-  data: any
+  data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
 "metamorphosis.md": {
 	id: "metamorphosis.md";
   slug: "metamorphosis";
   body: string;
   collection: "posts";
-  data: any
+  data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
 "monoid-algebraic-structure.md": {
 	id: "monoid-algebraic-structure.md";
   slug: "monoid-algebraic-structure";
   body: string;
   collection: "posts";
-  data: any
+  data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
 "rethinking-FP.md": {
 	id: "rethinking-FP.md";
   slug: "rethinking-fp";
   body: string;
   collection: "posts";
-  data: any
+  data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
 "rust-async-programming.md": {
 	id: "rust-async-programming.md";
   slug: "rust-async-programming";
   body: string;
   collection: "posts";
-  data: any
+  data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
 "semigroup-algebraic-structure.md": {
 	id: "semigroup-algebraic-structure.md";
   slug: "semigroup-algebraic-structure";
   body: string;
   collection: "posts";
-  data: any
+  data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
 "smart-uses-of-containers.md": {
 	id: "smart-uses-of-containers.md";
   slug: "smart-uses-of-containers";
   body: string;
   collection: "posts";
-  data: any
+  data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
 "think-of-types-like-sets.md": {
 	id: "think-of-types-like-sets.md";
   slug: "think-of-types-like-sets";
   body: string;
   collection: "posts";
-  data: any
+  data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
 "who-am-i.md": {
 	id: "who-am-i.md";
   slug: "who-am-i";
   body: string;
   collection: "posts";
-  data: any
+  data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
 };
 
@@ -304,5 +304,5 @@ declare module 'astro:content' {
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
 
-	type ContentConfig = never;
+	type ContentConfig = typeof import("../src/content/config");
 }
