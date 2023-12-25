@@ -189,6 +189,13 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
+"2023-famous-quotes.md": {
+	id: "2023-famous-quotes.md";
+  slug: "2023-famous-quotes";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
 "chakra-ui-experience.md": {
 	id: "chakra-ui-experience.md";
   slug: "chakra-ui-experience";
