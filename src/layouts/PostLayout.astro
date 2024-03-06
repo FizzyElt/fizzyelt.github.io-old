@@ -7,17 +7,17 @@ import { format } from 'date-fns';
 
 export interface Props {
   frontmatter: {
-    title: string;
-    description: string;
+    title?: string;
+    description?: string;
     pubDate?: Date;
     updatedDate?: Date;
-    tags: string[];
+    tags?: string[];
     heroImage?: string;
   };
 }
 
 const {
-  frontmatter: { title, description, pubDate, heroImage, tags = [] },
+  frontmatter: { title = '', description = '', pubDate, heroImage, tags = [] },
 } = Astro.props as Props;
 ---
 
