@@ -8,7 +8,6 @@ import rehypeKatex from "rehype-katex";
 // https://astro.build/config
 export default defineConfig({
 	site: "https://fizzyelt.github.io",
-	base: "/fizzyelt.github.io",
 	integrations: [sitemap(), tailwind()],
 	markdown: {
 		remarkPlugins: [remarkMath],
